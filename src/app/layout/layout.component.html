@@ -1,0 +1,20 @@
+<div class="layout">
+    <app-sidebar></app-sidebar>
+    <div class="basee">
+        @if (selectedIndex === 0) {
+        <app-home></app-home>
+        }@else if(selectedIndex === 1){
+        <app-dashboard></app-dashboard>
+        }@else if(selectedIndex === 2){
+        <app-analytics></app-analytics>
+        }@else if(selectedIndex === 3){
+        <app-report></app-report>
+        }@else if(selectedIndex === 4){
+        <app-users></app-users>
+        }@else if(selectedIndex === 5){
+        <app-settings></app-settings>
+        }
+        <!-- <app-report></app-report> -->
+    </div>
+
+</div>

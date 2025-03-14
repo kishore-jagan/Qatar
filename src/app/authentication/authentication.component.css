@@ -1,0 +1,85 @@
+.auth-main {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background: black;
+    overflow: hidden;
+    position: relative;
+    }
+  /* Logo Container */
+  .logo-container {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 2; /* Ensure it is above the waves and login card */
+  }
+ 
+  .logo {
+    width: 120px; /* Adjust size as needed */
+    height: auto;
+    object-fit: contain;
+  }
+ 
+  /* Name */
+.name {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 2; /* Ensure it is above the waves and login card */
+    font-size: 18px; /* Adjust font size */
+    font-weight: bold;
+    color: white; /* Make it visible against the background */
+  }
+ 
+ 
+  /* Login Card */
+  .login-card {
+    /* Above the wave */
+    width: 100%;
+    max-width: 500px;
+    background: #171a1f;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    padding: 50px;
+    text-align: center;
+  }
+ 
+  .login-card h1 {
+    font-size: 22px;
+    margin-bottom: 10px;
+    color: white;
+  }
+ 
+  .login-card p {
+    font-size: 14px;
+    color: white;
+    margin-bottom: 20px;
+  }
+ 
+  .form-control {
+    border-radius: 8px;
+    margin-bottom: 15px;
+  }
+ 
+  .btn-login {
+    background-color: #171a1f;
+    color: white;
+    border-radius: 8px;
+    font-weight: bold;
+    border: none;
+    width: 200px;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+ 
+  .btn-login:hover {
+    background-color: #000000;
+    text-decoration: none;
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  }
+ 
+ 

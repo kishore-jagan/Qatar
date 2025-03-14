@@ -1,0 +1,51 @@
+[idd] {
+    width: 100%;
+    height: 90%;
+    margin: 0;
+    background-color: var(--basebg) !important;
+    padding: 5px !important;
+    position: relative;
+    margin-bottom: 10px !important;
+    font-size: 8px !important;
+  }
+  ::ng-deep #ac_layer_21ea1a44_4 path{
+    fill: none !important;
+  }
+  ::ng-deep #ac_layer_26342519_1q text{
+    font-size: 8px !important;
+  }
+  ::ng-deep #ac_layer_26342519_1a text{
+    font-size: 6px !important;
+  }
+::ng-deep .anychart-credits{
+    display: none;
+}
+
+   :ng-deep #ac_layer_34c6bc07_23{
+    height: 80px !important;
+    width: 200px !important;
+    display: none !important;
+    background-color: #e0f0fd;
+  }
+  ::ng-deep path[data-ac-wrapper-id="7"] {
+    fill: var(--basebg);  /* Change to the desired fill color */
+  }
+  ::ng-deep path[data-ac-wrapper-id="77"] {
+    fill: var(--basebg);  /* Change to the desired fill color */
+  }
+  ::ng-deep path[data-ac-wrapper-id="147"] {
+    fill: var(--basebg);  /* Change to the desired fill color */
+  }
+  ::ng-deep text[data-ac-wrapper-id="25"] {
+    font-size: 5px !important; /* Change to the desired fill color */
+  }
+
+  .dataBox{
+    height: 10%;
+    width: 55%;
+    background-color: aliceblue;
+    position: absolute;
+    z-index: 999;
+    bottom: 35%;
+    right: 30%
+  }

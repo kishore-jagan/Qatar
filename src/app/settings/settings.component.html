@@ -1,0 +1,20 @@
+<div class="main_setting">
+    <h2>Settings</h2>
+    <div class="head">
+        <div [ngClass]="activeOption ===0 ? 'option_active': 'option'" (click)="changeOption(0)">General</div>
+        <div [ngClass]="activeOption ===1 ? 'option_active': 'option'" (click)="changeOption(1)">Staion Setting</div>
+        <div [ngClass]="activeOption ===2 ? 'option_active': 'option'" (click)="changeOption(2)">Sensor Setting</div>
+        <div [ngClass]="activeOption ===3 ? 'option_active': 'option'" (click)="changeOption(3)">Appearace</div>
+        <div [ngClass]="activeOption ===4 ? 'option_active': 'option'" (click)="changeOption(4)">Billing</div>
+        <div [ngClass]="activeOption ===5 ? 'option_active': 'option'" (click)="changeOption(5)">Notifications</div>
+
+    </div>
+    <div class="boddy">
+        @if (activeOption === 0) {
+        <app-general></app-general>
+        }@else if (activeOption ===1) {
+        <app-appearance></app-appearance>
+        }
+        <!-- <app-general></app-general> -->
+    </div>
+</div>

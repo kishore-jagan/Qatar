@@ -1,0 +1,258 @@
+.button {
+    position: absolute;
+    top: 10%;
+    right: 20%;
+    background-color: white;
+    border-radius: 20rem 0 0 20rem;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    overflow: hidden;
+}
+
+.main_station_name {
+    width: 15rem;
+    height: 25rem;
+    /* background: #4747f895;
+    background: -webkit-linear-gradient(to right, #1CB5E0, #4747f895);
+    background: linear-gradient(to right, #1CB5E0, #4747f895); */
+
+    /* background: #ff7e5f;
+    background: -webkit-linear-gradient(to right, #feb47b, #ff7e5f);
+    background: linear-gradient(to right, #feb47b, #ff7e5f); */
+
+    /* background: #2c3e50;
+    background: -webkit-linear-gradient(to right, #4ca1af, #2c3e50);
+    background: linear-gradient(to right, #4ca1af, #2c3e50); ok */
+
+    /* background: #360033;
+    background: -webkit-linear-gradient(to right, #0b8793, #360033);
+    background: linear-gradient(to right, #0b8793, #360033); */
+    /* 
+    background: #12c2e9;
+    background: -webkit-linear-gradient(to right, #c471ed, #f64f59);
+    background: linear-gradient(to right, #c471ed, #f64f59); ok*/
+
+    /* background: #11998e;
+    background: -webkit-linear-gradient(to right, #38ef7d, #11998e);
+    background: linear-gradient(to right, #38ef7d, #11998e); */
+
+    /* background: #f4c4f3;
+    background: -webkit-linear-gradient(to right, #fc67fa, #f4c4f3);
+    background: linear-gradient(to right, #fc67fa, #f4c4f3); */
+
+    /* background: #ff512f;
+    background: -webkit-linear-gradient(to right, #dd2476, #ff512f);
+    background: linear-gradient(to right, #dd2476, #ff512f); */
+
+    /* background: #00c3ff;
+    background: -webkit-linear-gradient(to right, #ffff1c, #00c3ff);
+    background: linear-gradient(to right, #ffff1c, #00c3ff); */
+
+
+
+    /* background: rgba(255, 255, 255, 0.021);
+    backdrop-filter: blur(100px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.171);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+
+    background: rgba(20, 20, 20, 0.5);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+
+
+
+
+    border-radius: 15rem 0 0 15rem;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    position: absolute;
+    top: 18%;
+    right: 0%;
+    overflow: hidden;
+}
+
+.stationname {
+    width: 15rem;
+    height: 25rem;
+    border-radius: 15rem 0 0 15rem;
+    display: flex;
+    justify-content: centerc;
+    align-items: center;
+}
+
+.stationname.rotated {
+    transform: rotate(360deg);
+    transform-origin: right center;
+    transition: transform 1.5s ease;
+}
+
+
+.stationname::before {
+    content: "";
+    position: absolute;
+    width: 63%;
+    height: 3px;
+    background-color: rgba(0, 0, 0, 0.6);
+    top: 32%;
+    left: 6%;
+    transform: rotate(42deg);
+}
+
+/* .stationname::after {
+    content: "";
+    position: absolute;
+    width: 55%;
+    height: 3px;
+    background-color: white;
+    top: 52%;
+    left: 0%;
+    transform: rotate(0deg);
+} */
+
+.stationname .lines {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+/* Additional two lines */
+.stationname .lines::before {
+    content: "";
+    position: absolute;
+    width: 80%;
+    height: 3px;
+    background-color: rgba(0, 0, 0, 0.6);
+    top: 72%;
+    left: 0%;
+    transform: rotate(-45deg);
+}
+
+/* .stationname .lines::after {
+    content: "";
+    position: absolute;
+    width: 40%;
+    height: 3px;
+    background-color: white;
+    top: 85%;
+    left: 20%;
+    transform: rotate(20deg);
+} */
+
+/* Common styles for all sections */
+.section {
+    position: absolute;
+    width: 100%;
+    height: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* background: linear-gradient(145deg, #3a9ad9, #54c5f8, #1f78c1); */
+}
+
+/* Section colors */
+.top-1 {
+    top: 5px;
+    left: 15%;
+    /* background: linear-gradient(145deg, #3a9ad9, #54c5f8, #1f78c1); */
+    /* align-items: flex-end; */
+    /* padding-right: 10%; */
+}
+
+.top-2 {
+    top: 25%;
+    right: 15%;
+}
+
+.bottom-1 {
+    top: 42%;
+    right: 25%;
+    /* background: linear-gradient(145deg, #3a9ad9, #54c5f8, #1f78c1); */
+}
+
+.bottom-2 {
+    top: 70%;
+    left: 15%;
+    /* background: linear-gradient(145deg, #3a9ad9, #54c5f8, #1f78c1); */
+}
+
+/* Small circle */
+.smallCircle {
+    position: absolute;
+    right: 0%;
+    top: 35%;
+    width: 7rem;
+    height: 10rem;
+    /* background: #11998e;
+    background: -webkit-linear-gradient(to right, #38ef7d, #11998e);
+    background: linear-gradient(to right, #38ef7d, #11998e); */
+    /* background-color: #0783d5; */
+    /* background: #00c3ff;
+    background: -webkit-linear-gradient(to right, #38ef7d, #00c3ff);
+    background: linear-gradient(to right, #38ef7d, #00c3ff); */
+
+
+    /* background: rgba(255, 255, 255, 0.021);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.171);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+
+    background: rgba(20, 20, 20, 0.5);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+
+    border-radius: 8rem 0 0 8rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: end;
+    margin-bottom: 5px;
+    z-index: 1;
+}
+
+.buoy-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 2px;
+    background-color: lightblue;
+}
+
+.label {
+    color: whitesmoke;
+}
+
+.value {
+    font-weight: bold;
+    color: white;
+}
+
+.locationimg {
+    height: 90px;
+    width: 90px;
+}
+
+.color1 {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 34px;
+    border-radius: 50%;
+    background-color: white;
+}
+
+.color2 {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    padding-left: 2px;
+    top: 35px;
+    /* border-radius: 50%; */
+    /* background-color: red; */
+}

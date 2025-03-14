@@ -1,0 +1,97 @@
+<div class="Genral_main">
+    <div class="theme">
+        <div class="lefter">
+            <h4>Themes</h4>
+            <p>Choose theme for your application</p>
+        </div>
+        <div class="righter">
+            <div class="white"></div>
+            <div class="black"></div>
+            <div class="blue"></div>
+        </div>
+
+    </div>
+    <div class="divider"></div>
+    <div class="theme">
+        <div class="lefter">
+            <h4>Current Widget</h4>
+            <p>Choose widget for your Current Sensor</p>
+        </div>
+        <div class="current1" [ngClass]="{'current1_active': selectedCurrent === 'guage1'}"
+            (click)="changeCurrent('guage1')">
+            <i class="fa-regular fa-circle-check" *ngIf="selectedCurrent === 'guage1'"></i>
+            <!-- <img src="../../../assets/image/speedndir.png" alt=""> -->
+            <!-- <app-radial-gauge></app-radial-gauge> -->
+
+        </div>
+
+        <div class="current2" [ngClass]="{'current1_active': selectedCurrent === 'guage2'}"
+            (click)="changeCurrent('guage2')">
+
+            <i class="fa-regular fa-circle-check" *ngIf="selectedCurrent === 'guage2'"></i>
+            <!-- <img src="../../../assets/image/snd2.png" alt="">
+              -->
+            <div class="left_c_2">
+                <app-direction1></app-direction1>
+            </div>
+            <div class="right_c_2">
+                <!-- <h3>iwdbf</h3> -->
+                <app-gauge2></app-gauge2>
+            </div>
+
+
+        </div>
+
+        <div class="current3" [ngClass]="{'current1_active': selectedCurrent === 'guage3'}"
+            (click)="changeCurrent('guage3')">
+            <i class="fa-regular fa-circle-check" *ngIf="selectedCurrent === 'guage3'"></i>
+            <img src="../../../assets/image/snd3.png" alt="">
+        </div>
+
+
+    </div>
+    <!-- <div class="divider"></div>
+    <div class="theme">
+        <div class="lefter">
+            <h4>Tide Widget</h4>
+            <p>Choose widget for your tide Sensor</p>
+        </div>
+        <div class="tide1" [ngClass]="{'tide1_active': selectedtide === 'tide1'}" (click)="changetide('tide1')">
+            <i class="fa-regular fa-circle-check" *ngIf="selectedtide === 'tide1'"></i>
+            <img src="../../../assets/image/tide1.png" alt="">
+        </div>
+
+        <div class="tide2" [ngClass]="{'tide1_active': selectedtide === 'tide2'}" (click)="changetide('tide2')">
+            <i class="fa-regular fa-circle-check" *ngIf="selectedtide === 'tide2'"></i>
+        </div>
+
+        <div class="tide3" [ngClass]="{'tide1_active': selectedtide === 'tide3'}" (click)="changetide('tide3')">
+            <i class="fa-regular fa-circle-check" *ngIf="selectedtide === 'tide3'"></i>
+        </div>
+
+
+    </div>
+    <div class="divider"></div>
+    <div class="theme">
+        <div class="lefter">
+            <h4>battery Widget</h4>
+            <p>Choose widget for your battery Sensor</p>
+        </div>
+        <div class="battery1" [ngClass]="{'battery1_active': selectedbattery === 'battery1'}"
+            (click)="changebattery('battery1')">
+            <i class="fa-regular fa-circle-check" *ngIf="selectedbattery === 'battery1'"></i>
+        </div>
+
+        <div class="battery2" [ngClass]="{'battery1_active': selectedbattery === 'battery2'}"
+            (click)="changebattery('battery2')">
+            <i class="fa-regular fa-circle-check" *ngIf="selectedbattery === 'battery2'"></i>
+        </div>
+
+        <div class="battery3" [ngClass]="{'battery1_active': selectedbattery === 'battery3'}"
+            (click)="changebattery('battery3')">
+            <i class="fa-regular fa-circle-check" *ngIf="selectedbattery === 'battery3'"></i>
+        </div>
+
+
+    </div> -->
+</div>

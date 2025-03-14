@@ -1,0 +1,43 @@
+<!-- Logo -->
+<div class="auth-main">
+    <div class="logo-container">
+        <img src="logo.png" alt="Logo" class="logo" />
+    </div>
+
+    <!-- Name -->
+    <div class="name">
+        <span>NAVITAS</span>
+    </div>
+
+
+    <!-- Login Card -->
+    <div class="login-card">
+        <h1>Sign in</h1>
+        <p>Use your Username and Password to sign in.</p>
+        <form (ngSubmit)="login($event)">
+            <input type="text" class="form-control" placeholder="Username" required [(ngModel)]="email"
+                [ngModelOptions]="{standalone: true}" (change)="loging()" />
+            <input type="password" class="form-control" placeholder="Password" required [(ngModel)]="password"
+                [ngModelOptions]="{standalone: true}" (change)="loging()" />
+            <button type="submit" (click)="login($event)" class="btn btn-login btn-outline-dark">Sign In</button>
+        </form>
+    </div>
+
+
+
+
+
+    <!-- /* General Body Styling */
+    body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background: black;
+    overflow: hidden;
+    position: relative;
+    } -->
+</div>

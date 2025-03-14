@@ -1,0 +1,35 @@
+.mainBar{
+    height: 6%;
+    width: 100%;
+    background-color:var(--basebg);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.bar_station_select{
+  margin-left: 5px;
+  height: 85%;
+  width: 200px;
+  color: var(--icons);
+  /* background-color: aqua; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+}
+.bar_station_select select{
+  height: 20px;
+  width: 150px;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--basebg);
+  opacity: 0.7;
+  color: var(--icons);
+}
+select option{
+  background-color: var(--basebg);
+  font-size: 18px;
+}
+
