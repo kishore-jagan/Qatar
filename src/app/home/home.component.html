@@ -10,30 +10,37 @@
         </button>
         <div id="ol-map" class="map"></div>
         <div class="expand-space">
-            <div class="expand-rectangle" *ngFor="let station of stations">
+            <div class="expand-rectangle" *ngFor="let station of stations; let i = index">
+
+                <div class="value">{{ `B_ID${i + 1}` }}</div>
+
                 <img src="../../assets/home/buoy.png" alt="Profile" class="profile-img">
-                <div class="info-item">
-                    <!-- <span class="label">Name:</span> -->
-                    <span class="value">{{ station.name }}</span>
-                </div>
-                <div class="info-column">
-                    <div class="info-item">
-                        <span class="label">Lat:</span>
-                        <span class="value">{{ station.lat }}</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="label">Long:</span>
-                        <span class="value">{{ station.long }}</span>
-                    </div>
-                </div>
-                <div class="info-item">
-                    <span class="label">Status:</span>
-                    <span class="value">{{ station.status }}</span>
-                </div>
                 <!-- <div class="info-item">
-                    <span class="label">Battery:</span>
-                    <span class="value">{{ station.battery }}</span>
+                    <span class="value">{{ station.name }}</span>
                 </div> -->
+
+                <div class="info-row">
+                    <div class="info-item">
+                        <img class="locationimg" src="../../assets/home/lll-removebg-preview.png" alt="location">
+                    </div>
+                    <div class="info-column">
+                        <div class="info-item">
+                            <span class="value">{{`${buoy1lat}°`}}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="value">{{`${buoy1long}°`}}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-row">
+                    <span class="value">{{ station.status }}</span>
+                    <img class="active" src="../../../../assets/home/active.png" alt="online">
+                </div>
+                <div class="info-row">
+                    <span class="value">{{ buoyDrift }}</span>
+                    <img class="locationimg" src="../../assets/home/buoy-unscreen.gif" alt="drift">
+                </div>
             </div>
         </div>
     </div>
@@ -54,7 +61,7 @@
         (click)="mapChange('Spinal Map')">
 
 
-    <app-infobuoy *ngIf="selectedBuoy" [buoyName]="selectedBuoy" [latitude]="lat" [longitude]="long"
+    <app-infobuoy *ngIf="buoyTapped" [buoyName]="selectedBuoy" [latitude]="buoy1lat" [longitude]="buoy1long"
         [status]="buoyDrift"></app-infobuoy>
 
     <div class="powered">

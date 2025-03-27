@@ -16,7 +16,6 @@ import { SettingsComponent } from '../settings/settings.component';
 
 @Component({
   selector: 'app-layout',
-  standalone: true,
   imports: [
     HomeComponent,
     SidebarComponent,

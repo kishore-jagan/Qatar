@@ -1,248 +1,72 @@
 .container {
-    position: relative;
-    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100vh;
-    margin: auto;
-    display: flex;
-    justify-content: end;
-    align-items: center;
-    background-color: white;
 }
 
-.main_station_name {
-    width: 20rem;
-    height: 35rem;
-    /* background-color: transparent; */
-    background: #4747f895;
-    /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #1CB5E0, #4747f895);
-    /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #1CB5E0, #4747f895);
-    border-radius: 20rem 0 0 20rem;
-    display: flex;
-    justify-content: end;
-    align-items: center;
+/* Main circular card */
+.circular-card {
     position: relative;
-    overflow: hidden;
-}
-
-.stationname {
-    width: 20rem;
-    height: 35rem;
-    border-radius: 20rem 0 0 20rem;
-    display: flex;
-    justify-content: end;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-}
-
-.stationname.rotated {
-    transform: rotate(360deg);
-    transform-origin: right center;
-    /* Set pivot point to right center */
-    transition: transform 1.5s ease;
-    /* Optional: Smooth transition */
-}
-
-
-.stationname::before {
-    content: "";
-    position: absolute;
-    width: 80%;
-    height: 3px;
-    background-color: white;
-    top: 22%;
-    left: 5%;
-    transform: rotate(45deg);
-}
-
-.stationname::after {
-    content: "";
-    position: absolute;
-    width: 51%;
-    height: 3px;
-    background-color: white;
-    top: 53%;
-    left: 0%;
-    transform: rotate(0deg);
-}
-
-.stationname .lines {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-}
-
-/* Additional two lines */
-.stationname .lines::before {
-    content: "";
-    position: absolute;
-    width: 70%;
-    height: 3px;
-    background-color: white;
-    top: 80%;
-    left: 10%;
-    transform: rotate(-45deg);
-}
-
-/* .stationname .lines::after {
-    content: "";
-    position: absolute;
     width: 40%;
-    height: 3px;
-    background-color: white;
-    top: 85%;
-    left: 20%;
-    transform: rotate(20deg);
-} */
-
-/* Common styles for all sections */
-.section {
-    position: absolute;
-    width: 100%;
-    height: 25%;
+    height: 80%;
+    border-radius: 50%;
+    overflow: hidden;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    /* background: linear-gradient(145deg, #3a9ad9, #54c5f8, #1f78c1); */
 }
 
-/* Section colors */
-.top-1 {
-    top: 0px;
-    /* background: linear-gradient(145deg, #3a9ad9, #54c5f8, #1f78c1); */
-    align-items: flex-end;
-    /* padding-right: 10%; */
-}
-
-.top-2 {
-    top: 25%;
-    /* background: linear-gradient(145deg, #3a9ad9, #54c5f8, #1f78c1); */
-}
-
-.bottom-1 {
-    top: 50%;
-    /* background: linear-gradient(145deg, #3a9ad9, #54c5f8, #1f78c1); */
-}
-
-.bottom-2 {
-    top: 75%;
-    /* background: linear-gradient(145deg, #3a9ad9, #54c5f8, #1f78c1); */
-}
-
-/* Small circle */
-.smallCircle {
-    width: 10rem;
-    height: 17.5rem;
-    background-color: #0783d5;
-    border-radius: 10rem 0 0 10rem;
-    right: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 5px;
-}
-
-.smallCircle1 {
-    position: absolute;
-    right: 0%;
-    top: 32%;
-    width: 10rem;
-    height: 17.5rem;
-    background-color: #0783d5;
-    border-radius: 10rem 0 0 10rem;
-    right: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 5px;
-    z-index: 1;
-}
-
-/* Styling for text */
-.section p {
-    font-size: 1.2rem;
-    color: white;
-    font-weight: bold;
-    margin-top: 5px;
-}
-
-/* Icon styling */
-.icon {
-    width: 40px;
-    /* Adjust size */
-    height: 40px;
-}
-
-
-
-
-.info-column {
+/* Left half container */
+.left-half {
+    width: 50%;
     height: 100%;
-    width: 100%;
-    /* background: linear-gradient(145deg, #3a9ad9, #54c5f8, #1f78c1); */
     display: flex;
     flex-direction: column;
-    border-radius: 10px;
-    cursor: pointer;
-    justify-content: center;
-    align-items: end;
-    padding-right: 55px;
+    justify-content: space-between;
+    position: relative;
 }
 
-.info-column1 {
-    height: 100%;
+/* Top half */
+.top-half {
     width: 100%;
-    /* background: linear-gradient(145deg, #3a9ad9, #54c5f8, #1f78c1); */
-    display: flex;
-    flex-direction: column;
-    border-radius: 10px;
-    /* cursor: pointer; */
-    justify-content: center;
-    align-items: center;
-    padding-right: 100px;
+    height: 49.5%;
+    background-color: rgba(0, 123, 255, 0.8);
+    border-top-left-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left: 0px;
+    clip-path: polygon(100% 100%, 0% 100%, 0% 0%);
 }
 
-/* .info-item {
+.top-half2 {
     width: 100%;
-    display: flex;
-    justify-content: end;
-} */
-
-.buoy-image {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    margin-bottom: 2px;
-    background-color: lightblue;
-}
-
-.value {
-    font-weight: bold;
-    color: #020C50;
-}
-
-.locationimg {
-    height: 50px;
-    width: 50px;
-}
-
-.color1 {
+    height: 49.5%;
+    background-color: rgba(0, 123, 255, 0.8);
+    border-top-left-radius: 50%;
     position: absolute;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background-color: yellow;
+    top: -2px;
+    left: 0px;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%);
 }
 
-.color2 {
+/* Bottom half */
+.bottom-half {
+    width: 100%;
+    height: 49.5%;
+    background-color: rgba(0, 86, 179, 0.8);
+    border-bottom-left-radius: 50%;
+    bottom: -2px;
+    left: 0px;
     position: absolute;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background-color: red;
+    clip-path: polygon(100% 0%, 0% 100%, 100% 100%);
+}
+
+.bottom-half2 {
+    width: 100%;
+    height: 49.5%;
+    background-color: rgba(0, 123, 255, 0.8);
+    border-bottom-left-radius: 50%;
+    position: absolute;
+    bottom: 2px;
+    left: 0px;
+    clip-path: polygon(0% 100%, 100% 0%, 0% 0%);
 }

@@ -1,70 +1,28 @@
-<main>
-
-    <div class="map-container">
-        <button (click)="expandMap()" class="expand-button">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                class="bi bi-arrows-fullscreen" viewBox="0 0 16 16">
-                <path fill-rule="evenodd"
-                    d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707zm4.344 0a.5.5 0 0 1 .707 0l4.096 4.096V11.5a.5.5 0 1 1 1 0v3.975a.5.5 0 0 1-.5.5H11.5a.5.5 0 0 1 0-1h2.768l-4.096-4.096a.5.5 0 0 1 0-.707zm0-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707zm-4.344 0a.5.5 0 0 1-.707 0L1.025 1.732V4.5a.5.5 0 0 1-1 0V.525a.5.5 0 0 1 .5-.5H4.5a.5.5 0 0 1 0 1H1.732l4.096 4.096a.5.5 0 0 1 0 .707z" />
-            </svg>
-        </button>
-        <div id="ol-map" class="map"></div>
-        <div class="expand-space">
-            <div class="expand-rectangle" *ngFor="let station of stations">
-                <img src="../../assets/home/buoy.png" alt="Profile" class="profile-img">
-                <div class="info-item">
-                    <!-- <span class="label">Name:</span> -->
-                    <span class="value">{{ station.name }}</span>
+<div class="logcontainer">
+    <div class="activeusers">
+        <h2>Active Users</h2>
+        <div *ngFor="let user of activeUsers" class="user-card" (click)="selectUser(user)">
+            <div class="user-icon" [ngClass]="user.icon"></div>
+            <span class="user-name">{{ user.name }}</span>
+        </div>
+    </div>
+    <div class="activity-log-container">
+        <div class="user-activity-log" *ngIf="selectedUser">
+            <h2>{{ selectedUser.name }}'s Activity Log</h2>
+            <div *ngFor="let log of selectedUser.activityLogs" class="log-entry">
+                <div class="log-header">
+                    <div class="log-icon" [ngClass]="log.icon"></div>
+                    <span class="log-title">{{ log.title }}</span>
+                    <span class="log-time">{{ log.timestamp }}</span>
                 </div>
-                <div class="info-column">
-                    <div class="info-item">
-                        <span class="label">Lat:</span>
-                        <span class="value">{{ station.lat }}</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="label">Long:</span>
-                        <span class="value">{{ station.long }}</span>
+                <div class="log-events">
+                    <div *ngFor="let event of log.events" class="log-event" [ngClass]="event.status">
+                        <div class="event-icon"></div>
+                        <span class="event-time">{{ event.timestamp }}</span>
+                        <span class="event-message">{{ event.message }}</span>
                     </div>
                 </div>
-                <div class="info-item">
-                    <span class="label">Status:</span>
-                    <span class="value">{{ station.status }}</span>
-                </div>
-                <!-- <div class="info-item">
-                    <span class="label">Battery:</span>
-                    <span class="value">{{ station.battery }}</span>
-                </div> -->
             </div>
         </div>
     </div>
-
-    <!-- <div id="ol-map" class="map-container"></div> -->
-
-    <img src="../../assets/home/one.png" alt="Floating Image 1" class="floating-image1"
-        (click)="mapChange('OpenCycleMap')">
-    <img src="../../assets/home/four.png" alt="Floating Image 2" class="floating-image2"
-        (click)="mapChange('Transport')">
-    <img src="../../assets/home/six.png" alt="Floating Image 3" class="floating-image3"
-        (click)="mapChange('Landscape')">
-    <img src="../../assets/home/five.png" alt="Floating Image 4" class="floating-image4"
-        (click)="mapChange('Outdoors')">
-    <img src="../../assets/home/two.png" alt="Floating Image 5" class="floating-image5"
-        (click)="mapChange('TransportDark')">
-    <img src="../../assets/home/thre.png" alt="Floating Image 6" class="floating-image6"
-        (click)="mapChange('Spinal Map')">
-
-
-    <app-infobuoy *ngIf="selectedBuoy" [buoyName]="selectedBuoy" [latitude]="lat" [longitude]="long"
-        [status]="buoyDrift"></app-infobuoy>
-
-    <div class="powered">
-        <div class="image"></div>
-        <span>powerd by Tridel Technologies Pvt, Ltd.,</span>
-    </div>
-
-    <!-- @if (buoy1range !== '') {
-    <div class="buoy1">
-        {{buoy1range}}
-    </div>
-    } -->
-</main>
+</div>

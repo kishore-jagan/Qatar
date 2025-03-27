@@ -4,11 +4,10 @@ import { ChartConfiguration, ChartData, ChartType } from 'chart.js';
 import { NgChartsModule } from 'ng2-charts';
 
 @Component({
-  selector: 'app-home-v1-chart',
-  standalone: true,
-  imports: [CommonModule, NgChartsModule],
-  templateUrl: './home-v1-chart.component.html',
-  styleUrls: ['./home-v1-chart.component.css'],
+    selector: 'app-home-v1-chart',
+    imports: [CommonModule, NgChartsModule],
+    templateUrl: './home-v1-chart.component.html',
+    styleUrls: ['./home-v1-chart.component.css']
 })
 export class HomeV1ChartComponent {
   public lineChartOptions: ChartConfiguration['options'] = {

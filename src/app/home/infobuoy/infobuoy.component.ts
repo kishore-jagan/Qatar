@@ -27,11 +27,14 @@ export class InfobuoyComponent implements OnInit {
   ngOnInit(): void {
     this.buoyClickedSubscription = this.buoyService.buoyClicked$.subscribe(
       (buoyName) => {
-        if (buoyName === this.buoyName) {
-          this.rotateStation();
-        }
+        console.log(buoyName, this.buoyName);
+        // if (buoyName === this.buoyName) {
+        // }
       }
     );
+    setTimeout(() => {
+      this.rotateStation();
+    }, 1000);
   }
 
   ngOnDestroy(): void {

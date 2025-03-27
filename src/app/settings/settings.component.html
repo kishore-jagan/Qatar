@@ -1,20 +1,94 @@
-<div class="main_setting">
-    <h2>Settings</h2>
-    <div class="head">
-        <div [ngClass]="activeOption ===0 ? 'option_active': 'option'" (click)="changeOption(0)">General</div>
-        <div [ngClass]="activeOption ===1 ? 'option_active': 'option'" (click)="changeOption(1)">Staion Setting</div>
-        <div [ngClass]="activeOption ===2 ? 'option_active': 'option'" (click)="changeOption(2)">Sensor Setting</div>
-        <div [ngClass]="activeOption ===3 ? 'option_active': 'option'" (click)="changeOption(3)">Appearace</div>
-        <div [ngClass]="activeOption ===4 ? 'option_active': 'option'" (click)="changeOption(4)">Billing</div>
-        <div [ngClass]="activeOption ===5 ? 'option_active': 'option'" (click)="changeOption(5)">Notifications</div>
-
+<div class="user-management">
+    <div class="header-container">
+        <i class="fa-solid fa-users header-icon"></i>
+        <div>
+            <h2>User Management</h2>
+            <p class="description">Manage team access and permissions</p>
+        </div>
     </div>
-    <div class="boddy">
-        @if (activeOption === 0) {
-        <app-general></app-general>
-        }@else if (activeOption ===1) {
-        <app-appearance></app-appearance>
-        }
-        <!-- <app-general></app-general> -->
+
+    <!-- Tabs Section -->
+    <div class="nav-card">
+        <nav>
+            <button (click)="setActiveTab('users')" [class.active]="activeTab === 'users'"><i
+                    class="fa-solid fa-user-group"></i> Users</button>
+            <button (click)="setActiveTab('addEditUser')" [class.active]="activeTab === 'addEditUser'"><i
+                    class="fa-solid fa-user-plus"></i> Add/Edit User</button>
+            <button (click)="setActiveTab('roles')" [class.active]="activeTab === 'roles'"><i
+                    class="fa-solid fa-shield"></i> Roles</button>
+            <button (click)="setActiveTab('designations')" [class.active]="activeTab === 'designations'"><i
+                    class="fa-solid fa-id-card"></i> Designations</button>
+            <button (click)="setActiveTab('userLog')" [class.active]="activeTab === 'userLog'"><i
+                    class="fa-solid fa-rotate-left"></i> User Log</button>
+        </nav>
+    </div>
+
+
+    <div *ngIf="activeTab === 'userLog'">
+        <div class="logcontainer">
+            <div class="userheader">
+                <h3>User Active Logs</h3>
+
+                <div id="search">
+                    <input type="search" placeholder="Search Logs" />
+                </div>
+            </div>
+            <div class="userdetails">
+                <div class="activeusers">
+                    <p><i class="fa-regular fa-user"></i> Users</p>
+
+                    <div *ngFor="let user of activeUsers" class="user-card" (click)="selectUser(user)">
+                        <div class="user-icon" [ngClass]="user.icon"></div>
+                        <span class="user-name">{{ user.name }}</span>
+                        <span class="user-name">Admin</span>
+                    </div>
+                </div>
+
+
+
+
+                <!-- <div class="activeusers">
+                <h2>Active Users</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Icon</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let user of activeUsers" (click)="selectUser(user)">
+                            <td>
+                                <div class="user-icon" [ngClass]="user.icon"></div>
+                            </td>
+                            <td>{{ user.name }}</td>
+                            <td>{{ user.email }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div> -->
+
+                <div class="activity-log-container">
+                    <div class="user-activity-log" *ngIf="selectedUser">
+                        <h2>{{ selectedUser.name }}'s Activity Log</h2>
+                        <div *ngFor="let log of selectedUser.activityLogs" class="log-entry">
+                            <div class="log-header">
+                                <div class="log-icon" [ngClass]="log.icon"></div>
+                                <span class="log-title">{{ log.title }}</span>
+                                <span class="log-time">{{ log.timestamp }}</span>
+                            </div>
+                            <div class="log-events">
+                                <div *ngFor="let event of log.events" class="log-event" [ngClass]="event.status">
+                                    <div class="event-icon"></div>
+                                    <span class="event-time">{{ event.timestamp }}</span>
+                                    <span class="event-message">{{ event.message }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

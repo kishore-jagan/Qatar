@@ -8,12 +8,11 @@ import { FormsModule } from '@angular/forms';
 import { pass } from 'three/webgpu';
 
 @Component({
-  selector: 'app-authentication',
-  standalone:true,
-  imports: [HttpClientModule, CommonModule, FormsModule],
-  templateUrl: './authentication.component.html',
-  styleUrl: './authentication.component.css',
-  providers:[AuthService]
+    selector: 'app-authentication',
+    imports: [HttpClientModule, CommonModule, FormsModule],
+    templateUrl: './authentication.component.html',
+    styleUrl: './authentication.component.css',
+    providers: [AuthService]
 })
 export class AuthenticationComponent {
 email!:string;

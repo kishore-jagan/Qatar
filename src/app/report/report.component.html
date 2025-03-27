@@ -1,3 +1,150 @@
-<div class="card flex justify-center">
-    <p-button label="Check" />
+<div class="report-container">
+    <!-- <div class="card flex justify-center">
+        <p-drawer [(visible)]="visible" header="Drawer">
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                aliquip ex ea commodo consequat.
+            </p>
+        </p-drawer>
+    </div> -->
+    <div class="topcontent">
+        <h1>Reports</h1>
+    </div>
+
+
+    <div class="tablecontainer">
+        <p-table #dt [value]="sensorData" [columns]="selectedColumns" [loading]="loading" paginator="true" [rows]="10"
+            [rowsPerPageOptions]="[10,15,20]" [scrollable]="true" [resizableColumns]="true" columnResizeMode="expand"
+            [globalFilterFields]="globalFilterFields" [exportHeader]="'exportHeader'" selectionMode="multiple"
+            [(selection)]="selectedColumns"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [filterDelay]="0"
+            [tableStyle]="{'min-width': '50rem'}" responsiveLayout="stack" [breakpoint]="'960px'" stripedRows="true"
+            rowHover="true" showCurrentPageReport="true">
+
+            <ng-template #caption>
+                <div class="caption">
+                    <div class="captionrow">
+                        <!-- <p-button (click)="visible = true" icon="fa fa-arrow-right"> </p-button> -->
+                        <div id="search">
+                            <input type="search" placeholder="Search"
+                                (input)="onSearch($any($event).target.value, dt)" />
+                        </div>
+                        <div class="pselect">
+                            <p-selectButton [options]="options" [(ngModel)]="selectedOption"
+                                (onChange)="onOptionChange()">
+                            </p-selectButton>
+                        </div>
+
+                    </div>
+
+                    <div class="captionrow">
+                        <div class="date-range-selector">
+                            <p-selectButton [options]="viewOptions" [(ngModel)]="currentView"
+                                (onChange)="setView(currentView)">
+                            </p-selectButton>
+                        </div>
+
+                        <div class="filter">
+                            <p-multiselect display="chip" [options]="dynaColumns" optionLabel="header"
+                                [(ngModel)]="selectedColumns" placeholder="Select Columns" [maxSelectedLabels]="7"
+                                styleClass="w-full md:w-80" showHeader="false" selectedItemsLabel="{0} columns selected"
+                                [filter]="true" />
+                        </div>
+                    </div>
+
+                    <div class="captionrow">
+                        <div class="date-picker">
+                            <p-datepicker [(ngModel)]="selectedDate" [showIcon]="true" (onSelect)="onDateChange($event)"
+                                appendTo="body">
+                            </p-datepicker>
+                        </div>
+
+                        <div class="importExport">
+
+                            <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import"
+                                chooseLabel="Import" auto customUpload class="mr-2 inline-block"
+                                [chooseButtonProps]="{ severity: 'secondary' }" />
+
+
+                            <button class="export" label="Export" (click)="dt.exportCSV()"> <i
+                                    class="fas fa-external-link"></i> Export</button>
+
+
+                            <!-- <div class="text-center pb-4">
+                                <p-button icon="fas fa-external-link" label="Export" (click)="dt.exportCSV()" />
+                            </div> -->
+                        </div>
+                    </div>
+
+
+
+
+
+
+                    <!-- <div class="captionrowinrow">
+
+
+                        <p>Daily Sensor Data</p>
+
+                        <div class="text-center pb-4">
+                            <p-button icon="fas fa-external-link" label="Export" (click)="dt.exportCSV()" />
+                        </div>
+                    </div> -->
+
+
+
+
+                </div>
+
+
+
+
+
+
+
+            </ng-template>
+
+            <ng-template #header let-columns>
+                <tr>
+                    <th *ngFor="let col of columns">{{ col.header}}</th>
+                </tr>
+            </ng-template>
+
+            <ng-template #body let-rowData let-columns="columns">
+                <tr>
+                    <td *ngFor="let col of columns"> {{ rowData[col.field] }}</td>
+                </tr>
+            </ng-template>
+
+        </p-table>
+    </div>
+
+    <div class="quickviewContainer">
+        <div class="exportview">
+            <h3>Daily</h3>
+            <div class="exportviewico"><i class="fas fa-calendar-check"></i></div>
+            <p>Export Daily Senosr data</p>
+            <button class="export-btn">
+                <i class="fas fa-file-download"></i> Quick Export
+            </button>
+        </div>
+        <div class="exportview">
+            <h3>Monthly</h3>
+            <div class="exportviewico"><i class="fas fa-calendar-check"></i></div>
+            <p>Export Monthly Senosor Data</p>
+            <button class="export-btn">
+                <i class="fas fa-file-download"></i> Quick Export
+            </button>
+        </div>
+        <div class="exportview">
+            <h3>Yearly</h3>
+            <div class="exportviewico"><i class="fas fa-calendar-check"></i></div>
+            <p>Export Yearly Sensor Data</p>
+            <button class="export-btn">
+                <i class="fas fa-file-download"></i> Quick Export
+            </button>
+        </div>
+    </div>
+
 </div>

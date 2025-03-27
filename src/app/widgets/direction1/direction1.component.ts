@@ -6,11 +6,10 @@ import am5themes_Animated from '@amcharts/amcharts5/themes/Animated';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-direction1',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './direction1.component.html',
-  styleUrl: './direction1.component.css'
+    selector: 'app-direction1',
+    imports: [CommonModule],
+    templateUrl: './direction1.component.html',
+    styleUrl: './direction1.component.css'
 })
 export class Direction1Component implements AfterViewInit {
   private root!: am5.Root;
