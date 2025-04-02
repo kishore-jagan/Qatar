@@ -27,7 +27,7 @@ export class SettingsComponent {
         {
           timestamp: '11-16-2023 4:27 pm',
           title: 'Accessing the Account Delete',
-          icon: 'account_circle',
+          icon: 'fas fa-user-circle',
           events: [
             {
               timestamp: '11-16-2023 4:37 pm',
@@ -77,6 +77,36 @@ export class SettingsComponent {
       name: 'Ganapathy',
       email: 'user2@example.com',
       icon: 'fas fa-user-circle',
+      activityLogs: [
+        {
+          timestamp: '11-16-2023 4:27 pm',
+          title: 'Delete Process',
+          icon: 'delete',
+          events: [
+            {
+              timestamp: '11-16-2023 4:37 pm',
+              status: 'success',
+              message: 'The user "ABC" Success of below verifications.',
+            },
+            {
+              timestamp: '11-16-2023 4:27 pm',
+              status: 'success',
+              message: 'Email Verification',
+            },
+            {
+              timestamp: '11-16-2023 4:27 pm',
+              status: 'failure',
+              message: 'Phone Number Verification Rejected',
+            },
+            {
+              timestamp: '11-16-2023 4:37 pm',
+              status: 'failure',
+              message:
+                'The user "ABC" Failure of final delete event from the respective Seebiz Product.',
+            },
+          ],
+        },
+      ],
     },
   ];
   // activityLogs = [
@@ -133,5 +163,6 @@ export class SettingsComponent {
 
   selectUser(user: any) {
     this.selectedUser = user;
+    console.log('Selected:', user);
   }
 }
