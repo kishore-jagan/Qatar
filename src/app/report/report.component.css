@@ -1,24 +1,277 @@
 .report-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  /* justify-content: space-between; */
   width: 100%;
-  height: 100vh;
-  border: 1px solid rgba(0, 0, 0, 0.5);
-  background-image: linear-gradient(to right, #56ab2f, #a8e063);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  height: 100%;
+  /* border: 1px solid #1ee1ff; */
+  /* box-shadow: 0 4px 4px #1ee1ff; */
   border-radius: 10px;
+  overflow-y: scroll;
+  /* background-color: #686a6c; */
+}
+
+.topcontent {
+  padding: 0px 20px;
+  /* line-height: 0.1; */
+}
+
+.tablecontainer {
+  /* height: 100%; */
+  width: 100%;
+  border-radius: 20px;
+  /* margin: 0px 10px 0px 0px; */
+  padding: 0px 20px;
 }
 
 
-.sidenav-content {
+::ng-deep .p-datatable-header {
+  background-color: white !important;
+  color: #000 !important;
+  border-radius: 20px 20px 0px 0px;
+  padding: 20px;
+  /* margin: 30px 0px 0px 0px; */
+  /* border: 1px solid #1ee1ff;
+  box-shadow: 0 4px 1px #1ee1ff; */
+}
+
+.caption {
+  /* width: 100%; */
   display: flex;
-  height: 100%;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  /* color: #fff; */
+  /* gap: 10; */
+}
+
+.captionrow {
+  /* width: 100%; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /* color: #fff; */
+  /* gap: 10; */
+}
+
+.captionrowinrow {
+  /* width: 50%; */
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  /* justify-content: space-between; */
+}
+
+.captionrowincolumn {
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+#search {
+  width: 365px;
+}
+
+#search input[type=search] {
+  background: #ededed url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
+  width: 100%;
+  height: 40px;
+  background-color: #F1F5F9;
+  padding-left: 30px;
+  border: 2px solid #ccc;
+  border-radius: 40px;
+  font-size: 16px;
+  outline: none;
+  margin-bottom: 10px;
+}
+
+#search input[type=search]:hover {
+  background-color: #fff;
+}
+
+#search input[type=search]:focus {
+  border-color: #119C8D;
+}
+
+.pselect p-selectbutton {
+  width: 500px;
+  height: 40px;
+}
+
+
+.date-range-selector p-selectbutton {
+  margin-bottom: 10px;
+  height: 40px;
+  width: 370px;
+}
+
+.filter p-multiselect {
+  width: 500px;
+  height: 40px;
+}
+
+.date-picker p-datepicker {
+  display: flex;
+  width: 364px;
+  height: 40px;
+  background-color: #F1F5F9;
+  border-radius: 5px;
   align-items: center;
   justify-content: center;
-  color: aqua;
 }
 
-.drawer-sidenav {
+
+
+.importExport {
+  /* margin-top: 5px; */
+  width: 36.5%;
+  height: 40px;
+  display: flex;
+  justify-content: end;
+  gap: 8px;
+  /* background: #F1F5F9; */
+  padding: 5px;
+  border-radius: 8px;
+  /* justify-content: space-between; */
+  align-items: center;
+}
+
+.export {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  /* Space between icon and text */
+  width: 100px;
+  height: 40px;
+  background-color: #F1F5F9;
+  border: 2px solid #F1F5F9;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 500;
+  /* outline: none; */
+  color: #334C75;
+  cursor: pointer;
+}
+
+.export:hover {
+  background-color: #E2E8F0;
+}
+
+
+
+
+
+
+
+
+
+
+/* Apply styles to PrimeNG table components using ::ng-deep */
+::ng-deep .p-datatable-thead th {
+  background-color: white !important;
+  color: rgba(0, 0, 0, 0.674) !important;
+  /* border: 1px solid #1ee1ff;
+  box-shadow: 0 2px 1px #1ee1ff; */
+  text-align: left;
+
+}
+
+::ng-deep .p-datatable-tbody td {
+  background-color: white !important;
+  /* Black background for rows */
+  color: black !important;
+  /* White text */
+  border-bottom: none;
+  /* Light grey border for table rows */
+  text-align: center;
+}
+
+
+
+
+/* Paginator Styling */
+::ng-deep .p-paginator {
+  background-color: white !important;
+  /* Black background for paginator */
+  color: black !important;
+  /* White text for paginator */
+  /* border-color: #1ee1ff;
+  box-shadow: 0 4px 1px #1ee1ff; */
+  border-radius: 0px 0px 20px 20px;
+  padding: 30px 20px 40px 20px;
+  /* margin: 0px 0px 30px 0px ; */
+}
+
+/* Pagination Buttons */
+::ng-deep .p-paginator .p-paginator-first,
+::ng-deep .p-paginator .p-paginator-prev,
+::ng-deep .p-paginator .p-paginator-next,
+::ng-deep .p-paginator .p-paginator-last {
+  background-color: #F1F5F9 !important;
+
+  color: #000 !important;
+  margin: 2px;
+}
+
+/* ::ng-deep .p-paginator .p-paginator-pages .p-highlight {
+  background-color: white !important;
+  color: black !important;
+} */
+
+/* Table */
+
+
+
+
+/*Common CSS  */
+/* button */
+
+
+
+.quickviewContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+  /* background-color: #007bff; */
+  /* border-radius: 20px; */
+  /* margin: 0px 50px 0px 0px; */
+  padding: 20px 20px;
+  line-height: 0.5;
+}
+
+.exportview {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center;
+  justify-content: center; */
+  border-radius: 20px;
+  width: 32%;
   padding: 20px;
-  color: aliceblue;
+  background-color: white;
+  color: #000;
+  position: relative;
+}
+
+.exportviewico {
+  position: absolute;
+  right: 5%;
+  top: 10%;
+  width: 40px;
+  height: 40px;
+  border-radius: 25%;
+  background-color: #BDDDFC;
+  color: #3D668F;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.exportview button {
+  border-radius: 20px;
+  padding: 10px;
+  cursor: pointer;
 }

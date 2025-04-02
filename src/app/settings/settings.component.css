@@ -1,45 +1,274 @@
-.main_setting{
-    margin: 0;
+:host {
     display: flex;
     flex-direction: column;
-    color: white;
-    background-color: var(--basebg);
+    height: 100vh;
+    background-color: aliceblue;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
-.head{
-    height: 30px;
+/* User management container */
+.user-management {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Header */
+.header-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-icon {
+    font-size: 50px;
+}
+
+h2 {
+    margin-bottom: 0;
+}
+
+.description {
+    margin-top: 0;
+    line-height: 1.2;
+}
+
+/* Card Background */
+.nav-card {
+    background: white;
+    padding: 10px;
     width: 100%;
+    border-radius: 8px;
+    display: inline-block;
+}
+
+/* Navigation Styling */
+nav {
+    display: flex;
+    gap: 10px;
+}
+
+nav button {
+    padding: 5px 30px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    background: transparent;
+    color: rgb(80, 80, 80);
+}
+
+nav button:hover {
+    color: black;
+}
+
+nav button.active {
+    background: linear-gradient(90deg, rgb(111, 180, 249) 0%, rgb(113, 180, 248) 100%);
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    border-radius: 50px;
+    border: 1px solid #0d6efd;
+}
+
+
+
+
+
+
+
+
+.logcontainer {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+}
+
+.userheader {
+    width: 100%;
+    height: 40px;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     align-items: center;
+    padding: 0px 10px 10px 10px;
+
 }
 
-.option{
-    color: white;
-    font-size: 15px;
-    padding-left: 10px;
-    padding-right: 10px;
-    cursor: pointer;
-    font-weight: 100;
-}
-.option_active{
-    height: 15px;
-    width: auto;
-    background-color: rgba(240, 248, 255, 0.576);
-    border-radius: 5px;
-    margin-left: 10px;
-    margin-right: 10px;
-    padding: 5px;
-    display: flex;
-    font-weight: 100;
-    font-size: 15px;
-    align-items: center;
-    justify-content: center;cursor: pointer;
+#search {
+    width: 250px;
 }
 
-
-.boddy{
-    height: auto;
+#search input[type=search] {
+    background: #ededed url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
     width: 100%;
-    /* background-color: aliceblue; */
+    height: 40px;
+    background-color: #F1F5F9;
+    padding-left: 30px;
+    border: 2px solid #ccc;
+    border-radius: 40px;
+    font-size: 16px;
+    outline: none;
+}
+
+#search input[type=search]:hover {
+    background-color: #fff;
+}
+
+#search input[type=search]:focus {
+    border-color: #119C8D;
+}
+
+.userdetails {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 70vh;
+    gap: 10px;
+    /* background-color: #119C8D; */
+    position: relative;
+    padding: 0px 10px;
+}
+
+
+.activeusers {
+    /* background-image: -webkit-gradient(linear, left top, right bottom, from(#64b5f6), to(#cfd8dc)); */
+    height: 70vh;
+    width: 25%;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    /* margin: 20px 0px; */
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    /* justify-content: start; */
+    overflow-y: auto;
+}
+
+.activeusers p {
+    padding-left: 10px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
+.user-card {
+    background-color: white;
+    /* height: 20%;
+    width: 50%; */
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    cursor: pointer;
+    /* background-image: url(../../assets/image/modern-geometric.jpg); */
+    /* background-size: cover;
+    background-position: center; */
+
+}
+
+.user-card:hover {
+    background-color: #f0f0f0;
+}
+
+.user-icon {
+    display: flex;
+    width: 30px;
+    height: 30px;
+    font-size: 25px;
+    border-radius: 50%;
+    /* background-color: #ccc; */
+    align-items: center;
+    justify-content: center;
+}
+
+.user-name {
+    font-weight: bold;
+}
+
+
+
+
+
+
+
+
+
+
+
+.activity-log-container {
+    /* background-image: -webkit-gradient(linear, left top, right bottom, from(#64b5f6), to(#cfd8dc)); */
+    height: 70vh;
+    width: 75%;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    /* margin: 20px 0px; */
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    overflow-y: auto;
+}
+
+
+.user-activity-log {
+    width: 70%;
+    padding: 10px;
+    margin: 0px auto;
+    /* background-color: #f0f0f0; */
+}
+
+.log-entry {
+    border-left: 3px solid #ccc;
+    padding-left: 10px;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.log-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+}
+
+.log-time {
+    color: gray;
+    font-size: 0.9em;
+}
+
+.log-events {
+    margin-top: 10px;
+}
+
+.log-event {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 5px;
+}
+
+.log-event .event-time {
+    font-size: 0.85em;
+    color: gray;
+}
+
+.log-event .event-message {
+    flex: 1;
+}
+
+.success {
+    color: green;
+}
+
+.failure {
+    color: red;
 }

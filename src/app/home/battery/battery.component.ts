@@ -2,11 +2,10 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-battery',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './battery.component.html',
-  styleUrl: './battery.component.css',
+    selector: 'app-battery',
+    imports: [CommonModule],
+    templateUrl: './battery.component.html',
+    styleUrl: './battery.component.css'
 })
 export class BatteryComponent implements OnInit {
   @Input() batteryLevel: number = 12;

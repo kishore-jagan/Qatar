@@ -6,11 +6,10 @@ import { Gauge2Component } from "../../widgets/gauge2/gauge2.component";
 // import { RadialGaugeComponent } from "../../widgets/radial-guage/radial-guage.component";
 
 @Component({
-  selector: 'app-general',
-  standalone:true,
-  imports: [CommonModule, RadialGaugeComponent, Direction1Component, Gauge2Component],
-  templateUrl: './general.component.html',
-  styleUrl: './general.component.css'
+    selector: 'app-general',
+    imports: [CommonModule, RadialGaugeComponent, Direction1Component, Gauge2Component],
+    templateUrl: './general.component.html',
+    styleUrl: './general.component.css'
 })
 export class GeneralComponent {
   selectedCurrent: string = 'guage1';

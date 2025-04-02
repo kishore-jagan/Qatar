@@ -22,7 +22,6 @@ import { BatteryComponent } from './home/battery/battery.component';
   imports: [
     RouterModule,
     // BouyInfoComponent,
-    BatteryComponent,
     BrowserModule,
     BrowserAnimationsModule,
     NoopAnimationsModule,

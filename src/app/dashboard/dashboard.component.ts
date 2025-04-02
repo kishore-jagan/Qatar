@@ -6,16 +6,15 @@ import { WindGaugeComponent } from '../wind-gauge/wind-gauge.component';
 import { BuoyComponent } from '../buoy/buoy.component';
 
 @Component({
-  selector: 'app-dashboard',
-  standalone: true,
-  imports: [
-    RadarHomeComponent,
-    HomeV1ChartComponent,
-    WindGaugeComponent,
-    BuoyComponent,
-  ],
-  templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.css',
+    selector: 'app-dashboard',
+    imports: [
+        RadarHomeComponent,
+        HomeV1ChartComponent,
+        WindGaugeComponent,
+        BuoyComponent,
+    ],
+    templateUrl: './dashboard.component.html',
+    styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent implements OnInit {
   constructor(private map: MapService1) {}

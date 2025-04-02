@@ -6,8 +6,8 @@ export interface StationConfigs {
   id: number;
   station_id: string;
   station_name: string;
-  warning: number;
-  danger: number;
+  warning: string;
+  danger: string;
   geo_format: string;
   lat_dd: number;
   lat_deg: number;
@@ -17,6 +17,9 @@ export interface StationConfigs {
   lon_deg: number;
   lon_min: number;
   lon_sec: number;
+  sensors: [];
+  created_at: string;
+  status: string;
 }
 
 @Injectable({
