@@ -37,40 +37,68 @@
                 <div class="activeusers">
                     <p><i class="fa-regular fa-user"></i> Users</p>
 
-                    <div *ngFor="let user of activeUsers" class="user-card" (click)="selectUser(user)">
+                    <div class="user-card all-users-card" (click)="selectUser('allUsers')"
+                        [ngClass]="{'selected': selectedUser === 'allUsers'}">
+                        <div class="user-icon">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+                        <span class="user-name">All Users</span>
+                    </div>
+
+                    <div *ngFor="let user of activeUsers" class="user-card" (click)="selectUser(user)"
+                        [ngClass]="{'selected': selectedUser === user}">
                         <div class="user-icon" [ngClass]="user.icon"></div>
                         <span class="user-name">{{ user.name }}</span>
                         <span class="user-name">Admin</span>
                     </div>
                 </div>
 
-
-
-
-                <!-- <div class="activeusers">
-                <h2>Active Users</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Icon</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let user of activeUsers" (click)="selectUser(user)">
-                            <td>
-                                <div class="user-icon" [ngClass]="user.icon"></div>
-                            </td>
-                            <td>{{ user.name }}</td>
-                            <td>{{ user.email }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div> -->
-
                 <div class="activity-log-container">
-                    <div class="user-activity-log" *ngIf="selectedUser">
+
+                    <div class="all-users-logs" *ngIf="selectedUser === 'allUsers'">
+                        <h2>All Active Users' Logs</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>User</th>
+                                    <th>Activity</th>
+                                    <th>Timestamp</th>
+                                    <th>Status</th>
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let user of activeUsers">
+                                    <td>{{ user.name }}</td>
+                                    <td>
+                                        <div *ngFor="let log of user.activityLogs">
+                                            <div *ngFor="let event of log.events">
+                                                <span class="event-message">{{ event.message }}</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div *ngFor="let log of user.activityLogs">
+                                            <div *ngFor="let event of log.events">
+                                                <span class="event-time">{{ event.timestamp }}</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div *ngFor="let log of user.activityLogs">
+                                            <div *ngFor="let event of log.events">
+                                                <span class="event-status" [ngClass]="event.status">{{ event.status
+                                                    }}</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="user-activity-log" *ngIf="selectedUser !== 'allUsers' && selectedUser">
                         <h2>{{ selectedUser.name }}'s Activity Log</h2>
                         <div *ngFor="let log of selectedUser.activityLogs" class="log-entry">
                             <div class="log-header">
@@ -87,8 +115,10 @@
                             </div>
                         </div>
                     </div>
+
+
+
                 </div>
             </div>
         </div>
     </div>
-</div>
