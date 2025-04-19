@@ -19,7 +19,7 @@
             [globalFilterFields]="globalFilterFields" [exportHeader]="'exportHeader'" selectionMode="multiple"
             [(selection)]="selectedColumns"
             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [filterDelay]="0"
-            [tableStyle]="{'min-width': '50rem'}" responsiveLayout="stack" [breakpoint]="'960px'" stripedRows="true"
+            [tableStyle]="{'min-width': '50rem'}" responsiveLayout="stack" [breakpoint]="'960px'" stripedRows
             rowHover="true" showCurrentPageReport="true">
 
             <ng-template #caption>
@@ -40,8 +40,8 @@
 
                     <div class="captionrow">
                         <div class="date-range-selector">
-                            <p-selectButton [options]="viewOptions" [(ngModel)]="currentView"
-                                (onChange)="setView(currentView)">
+                            <p-selectButton [options]="periodOptions" [(ngModel)]="selectedPeriod"
+                                (onChange)="setView(selectedPeriod)">
                             </p-selectButton>
                         </div>
 
@@ -54,11 +54,52 @@
                     </div>
 
                     <div class="captionrow">
-                        <div class="date-picker">
+                        <!-- <div class="date-picker">
                             <p-datepicker [(ngModel)]="selectedDate" [showIcon]="true" (onSelect)="onDateChange($event)"
                                 appendTo="body">
                             </p-datepicker>
+                        </div> -->
+
+                        <!-- Date Range -->
+                        <!-- <div class="date-picker" *ngIf="selectedPeriod === 'date'">
+                            <p-datepicker [(ngModel)]="fromDateModel" [showIcon]="true"
+                                (onSelect)="setView('date')"></p-datepicker>
+
+                            <p-datepicker [(ngModel)]="toDateModel" [showIcon]="true"
+                                (onSelect)="setView('date')"></p-datepicker>
+                        </div> -->
+
+                        <div class="date-picker" *ngIf="selectedPeriod === 'date'">
+                            <p-datepicker [(ngModel)]="rangeDates" selectionMode="range" [showIcon]="true"
+                                (onSelect)="setView('date')"
+                                [ngClass]="{ 'custom-date-input': selectedPeriod === 'date' }">
+                            </p-datepicker>
                         </div>
+
+
+                        <!-- Weekly -->
+                        <div class="date-picker" *ngIf="selectedPeriod === 'week'">
+                            <!-- <label>Select Week:</label> -->
+                            <p-datepicker [(ngModel)]="selectedDate" [showIcon]="true"
+                                (onSelect)="setView('week')"></p-datepicker>
+                        </div>
+
+                        <!-- Monthly -->
+                        <div class="date-picker" *ngIf="selectedPeriod === 'month'">
+                            <!-- <label>Select Month:</label> -->
+                            <p-datepicker [(ngModel)]="selectedDate" view="month" dateFormat="MM yy" [showIcon]="true"
+                                (onSelect)="setView('month')">
+                            </p-datepicker>
+                        </div>
+
+                        <!-- Yearly -->
+                        <div class="date-picker" *ngIf="selectedPeriod === 'year'">
+                            <!-- <label>Select Year:</label> -->
+                            <p-datepicker [(ngModel)]="selectedDate" view="year" dateFormat="yy" [showIcon]="true"
+                                (onSelect)="setView('year')">
+                            </p-datepicker>
+                        </div>
+
 
                         <div class="importExport">
 
@@ -69,51 +110,43 @@
 
                             <button class="export" label="Export" (click)="dt.exportCSV()"> <i
                                     class="fas fa-external-link"></i> Export</button>
-
-
-                            <!-- <div class="text-center pb-4">
-                                <p-button icon="fas fa-external-link" label="Export" (click)="dt.exportCSV()" />
-                            </div> -->
                         </div>
                     </div>
-
-
-
-
-
-
-                    <!-- <div class="captionrowinrow">
-
-
-                        <p>Daily Sensor Data</p>
-
-                        <div class="text-center pb-4">
-                            <p-button icon="fas fa-external-link" label="Export" (click)="dt.exportCSV()" />
-                        </div>
-                    </div> -->
-
-
-
-
                 </div>
-
-
-
-
-
-
-
             </ng-template>
 
             <ng-template #header let-columns>
                 <tr>
-                    <th *ngFor="let col of columns">{{ col.header}}</th>
+                    <th pSortableColumn="id" class="centered-cell">
+                        ID <p-sortIcon field="id"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="timestamp" class="centered-cell">
+                        Timestamp <p-sortIcon field="timestamp"></p-sortIcon>
+                    </th>
+                    <th *ngFor="let col of columns" [pSortableColumn]="col.field" class="centered-cell">
+                        <!-- <div style="display: flex; flex-direction: column; align-items: center;"> -->
+                        <span>{{ col.header }} <p-sortIcon [field]="col.field"></p-sortIcon></span>
+                        <!-- <small *ngIf="col.unit" class="text-gray-500">{{ col.unit }}</small>
+                        </div> -->
+                    </th>
                 </tr>
             </ng-template>
 
             <ng-template #body let-rowData let-columns="columns">
-                <tr>
-                    <td *ngFor="let col of columns"> {{ rowData[col.field] }}</td>
+                <!-- <tr> -->
+                <tr [ngClass]="{ 'highlight-row': rowMatchesSearch(rowData, columns) }">
+                    <!-- Static Columns -->
+                    <td class="centered-cell">
+                        <span [innerHTML]="highlightSearchText(rowData['id'])"></span>
+                    </td>
+                    <td class="centered-cell">
+                        <span [innerHTML]="highlightSearchText((rowData['timestamp']))"></span>
+                    </td>
+                    <td *ngFor="let col of columns" class="centered-cell">
+                        <span [innerHTML]="col.field === 'timestamp' || col.field === 'datatim' 
+                        ? highlightSearchText((rowData[col.field])) 
+                        : highlightSearchText(rowData[col.field])"></span>
+                    </td>
                 </tr>
             </ng-template>
 

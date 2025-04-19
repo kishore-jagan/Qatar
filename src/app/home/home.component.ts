@@ -11,6 +11,7 @@ import {
 import VectorSource from 'ol/source/Vector';
 import { Feature } from 'ol/render/webgl/MixedGeometryBatch';
 import { InfobuoyComponent } from '../home/infobuoy/infobuoy.component';
+import { ReportService } from '../report/report.service';
 
 @Component({
   selector: 'app-home',
@@ -18,51 +19,12 @@ import { InfobuoyComponent } from '../home/infobuoy/infobuoy.component';
   imports: [HttpClientModule, CommonModule, InfobuoyComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
-  providers: [InfobuoyComponent, StationconfigService],
+  providers: [InfobuoyComponent, StationconfigService, ReportService],
 })
 export class HomeComponent implements OnInit {
-  stations = [
-    {
-      name: 'Station 1',
-      lat: '80.178118',
-      long: '14.607975',
-      status: 'Online',
-      battery: '90%',
-    },
-    {
-      name: 'Station 2',
-      lat: '80.178118',
-      long: '14.607975',
-      status: 'Online',
-      battery: '30%',
-    },
-    {
-      name: 'Station 3',
-      lat: '80.178118',
-      long: '14.607975',
-      status: 'Offline',
-      battery: '40%',
-    },
-    {
-      name: 'Station 4',
-      lat: '80.178118',
-      long: '14.607975',
-      status: 'Online',
-      battery: '80%',
-    },
-    {
-      name: 'Station 5',
-      lat: '80.178118',
-      long: '14.607975',
-      status: 'Offline',
-      battery: '80%',
-    },
-  ];
-
-  buoyDrift!: string;
   mapInitialized = false;
   map!: Map | undefined;
-  livelocationbuoy1!: [number, number];
+  livelocationbuoy1: [number, number] = [51.563944, 25.423528];
   livelocationbuoy2!: [number, number];
   livelocationbuoy3!: [number, number];
   livelocationbuoy4!: [number, number];
@@ -95,10 +57,7 @@ export class HomeComponent implements OnInit {
   stationName4!: string;
   stationName5!: string;
 
-  centerbuoy1: [number, number] = fromLonLat([80.178118, 14.607975]) as [
-    number,
-    number
-  ];
+  centerbuoy1: [number, number] = [51.562944, 25.423028];
   centerbuoy2!: [number, number];
   centerbuoy3!: [number, number];
   centerbuoy4!: [number, number];
@@ -110,6 +69,12 @@ export class HomeComponent implements OnInit {
   imageMarker4!: string;
   imageMarker5!: string;
 
+  statusText1!: string;
+  statusText2!: string;
+  statusText3!: string;
+  statusText4!: string;
+  statusText5!: string;
+
   buoy1range = '';
   buoy2range = '';
   buoy3range = '';
@@ -118,6 +83,23 @@ export class HomeComponent implements OnInit {
 
   buoyTapped: boolean = false;
   selectedBuoy!: string;
+
+  battery!: number;
+  temp!: string;
+
+  buoy1Drift!: string;
+  buoy2Drift!: string;
+  buoy3Drift!: string;
+  buoy4Drift!: string;
+  buoy5Drift!: string;
+
+  id1!: string;
+  id2!: string;
+  id3!: string;
+  id4!: string;
+  id5!: string;
+
+  buoys: any[] = [];
 
   private mapTarget = 'ol-map';
   mapUrl = 'http://mt{0-3}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}';
@@ -151,10 +133,29 @@ export class HomeComponent implements OnInit {
   constructor(
     private mapService: MapService,
     private stationConfig: StationconfigService,
-    private infobuoy: InfobuoyComponent
+    private infobuoy: InfobuoyComponent,
+    private reportService: ReportService
   ) {}
   ngOnInit(): void {
+    this.reportService.getAllSensorData().subscribe((report) => {
+      // console.log('report', report);
+      if (report && report.length > 0) {
+        const latest = report[report.length - 1];
+        this.battery = latest.battv_min;
+        this.temp = latest.avgtemp.toString();
+      }
+    });
     this.stationConfig.getStationNames().subscribe((stationConfig) => {
+      this.id1 = stationConfig[0].station_id;
+      this.id2 = stationConfig[1].station_id;
+      this.id3 = stationConfig[2].station_id;
+      this.id4 = stationConfig[3].station_id;
+      this.id5 = stationConfig[4].station_id;
+      console.log('id1', this.id1);
+      console.log('id2', this.id2);
+      console.log('id3', this.id3);
+      console.log('id4', this.id4);
+      console.log('id5', this.id5);
       this.livelocationbuoy1 = fromLonLat([
         stationConfig[0].lon_dd,
         stationConfig[0].lat_dd,
@@ -213,6 +214,98 @@ export class HomeComponent implements OnInit {
       this.buoy5lat = stationConfig[4].lat_dd;
       this.buoy5long = stationConfig[4].lon_dd;
 
+      this.statusText1 =
+        stationConfig[0].status === 'active' ? 'Online' : 'Offline';
+      this.statusText2 =
+        stationConfig[1].status === 'active' ? 'Online' : 'Offline';
+      this.statusText3 =
+        stationConfig[2].status === 'active' ? 'Online' : 'Offline';
+      this.statusText4 =
+        stationConfig[3].status === 'active' ? 'Online' : 'Offline';
+      this.statusText5 =
+        stationConfig[4].status === 'active' ? 'Online' : 'Offline';
+
+      const result1 = this.haversineDistanceAndDirection(
+        // this.centerbuoy1,
+        // this.livelocationbuoy1
+        [stationConfig[0].lon_dd, stationConfig[0].lat_dd],
+        [stationConfig[0].lon_dd, stationConfig[0].lat_dd]
+      );
+      this.buoy1Drift = `${result1.distance.toFixed(2)} m ${result1.direction}`;
+      console.log(
+        'Buoy1 Drift:',
+        result1.distance.toFixed(2),
+        'm',
+        result1.direction
+      );
+
+      const result2 = this.haversineDistanceAndDirection(
+        [stationConfig[1].lon_dd, stationConfig[1].lat_dd],
+        [stationConfig[1].lon_dd, stationConfig[1].lat_dd]
+      );
+      this.buoy2Drift = `${result2.distance.toFixed(2)} m ${result2.direction}`;
+
+      const result3 = this.haversineDistanceAndDirection(
+        [stationConfig[2].lon_dd, stationConfig[2].lat_dd],
+        [stationConfig[2].lon_dd, stationConfig[2].lat_dd]
+      );
+      this.buoy3Drift = `${result3.distance.toFixed(2)} m ${result3.direction}`;
+
+      const result4 = this.haversineDistanceAndDirection(
+        [stationConfig[3].lon_dd, stationConfig[3].lat_dd],
+        [stationConfig[3].lon_dd, stationConfig[3].lat_dd]
+      );
+      this.buoy4Drift = `${result4.distance.toFixed(2)} m ${result4.direction}`;
+
+      const result5 = this.haversineDistanceAndDirection(
+        [stationConfig[4].lon_dd, stationConfig[4].lat_dd],
+        [stationConfig[4].lon_dd, stationConfig[4].lat_dd]
+      );
+      this.buoy5Drift = `${result5.distance.toFixed(2)} m ${result5.direction}`;
+
+      this.buoys = [
+        {
+          id: 'B_ID1',
+          name: this.stationName1,
+          lat: this.buoy1lat,
+          long: this.buoy1long,
+          status: this.statusText1,
+          drift: this.buoy1Drift,
+        },
+        {
+          id: 'B_ID2',
+          name: this.stationName2,
+          lat: this.buoy2lat,
+          long: this.buoy2long,
+          status: this.statusText2,
+          drift: this.buoy2Drift,
+        },
+        {
+          id: 'B_ID3',
+          name: this.stationName3,
+          lat: this.buoy3lat,
+          long: this.buoy3long,
+          status: this.statusText3,
+          drift: this.buoy3Drift,
+        },
+        {
+          id: 'B_ID4',
+          name: this.stationName4,
+          lat: this.buoy4lat,
+          long: this.buoy4long,
+          status: this.statusText4,
+          drift: this.buoy4Drift,
+        },
+        {
+          id: 'B_ID5',
+          name: this.stationName5,
+          lat: this.buoy5lat,
+          long: this.buoy5long,
+          status: this.statusText5,
+          drift: this.buoy5Drift,
+        },
+      ];
+
       const status = this.coordassign(stationConfig);
 
       // this.imageMarker1 = status
@@ -227,10 +320,6 @@ export class HomeComponent implements OnInit {
         }
       }
     });
-
-    const result = this.haversineDistanceAndDirection();
-    console.log('BuoyDruftResult:', result);
-    this.buoyDrift = `${result.distance} m ${result.direction} `;
   }
 
   coordassign(configs: StationConfigs[]): boolean {
@@ -284,6 +373,7 @@ export class HomeComponent implements OnInit {
       configs[0].status === 'active'
         ? '../../assets/home/buoy.png'
         : '../../assets/home/buoy_offline.png';
+
     this.imageMarker2 =
       configs[1].status === 'active'
         ? '../../assets/home/buoy.png'
@@ -315,7 +405,7 @@ export class HomeComponent implements OnInit {
       this.mapService.initializeMap(
         this.mapTarget,
         this.centerbuoy4,
-        15,
+        14,
         this.mapUrl
       );
       this.mapService.addMarker(
@@ -407,7 +497,6 @@ export class HomeComponent implements OnInit {
             this.infobuoy.rotateStation();
           }
         }, 0);
-        // this.infobuoy.rotateStation();
       });
       // const mapInstance = this.mapService.map;
       // mapInstance.on('click', () => {
@@ -416,14 +505,16 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  expandMap() {
+  expandMap(event: MouseEvent) {
+    this.buoyTapped = false;
+    event.stopPropagation();
     const mapContainer = document.getElementById('ol-map') as HTMLElement;
     const isExpanded = mapContainer.classList.toggle('expanded');
-    if (isExpanded) {
-      // mapContainer.style.width = '50%';
-    } else {
-      mapContainer.style.width = '100%';
-    }
+    // if (isExpanded) {
+    //   mapContainer.style.width = '50%';
+    // } else {
+    //   mapContainer.style.width = '100%';
+    // }
   }
 
   haversineDistanceAndDirection(
@@ -482,12 +573,142 @@ export class HomeComponent implements OnInit {
     return { distance, direction };
   }
 
+  getSelectedId(): string {
+    switch (this.selectedBuoy) {
+      case this.stationName1:
+        return this.id1;
+      case this.stationName2:
+        return this.id2;
+      case this.stationName3:
+        return this.id3;
+      case this.stationName4:
+        return this.id4;
+      case this.stationName5:
+        return this.id5;
+      default:
+        return '';
+    }
+  }
+
+  getSelectedMarker(): string {
+    switch (this.selectedBuoy) {
+      case this.stationName1:
+        return this.statusText1;
+      case this.stationName2:
+        return this.statusText2;
+      case this.stationName3:
+        return this.statusText3;
+      case this.stationName4:
+        return this.statusText4;
+      case this.stationName5:
+        return this.statusText5;
+      default:
+        return '';
+    }
+  }
+
+  getSelectedStatusImg(): string {
+    switch (this.selectedBuoy) {
+      case this.stationName1:
+        return this.statusText1 === 'Online'
+          ? '../../../../assets/home/active.png'
+          : '../../../../assets/home/inactive.jpg';
+      case this.stationName2:
+        return this.statusText2 === 'Online'
+          ? '../../../../assets/home/active.png'
+          : '../../../../assets/home/inactive.jpg';
+      case this.stationName3:
+        return this.statusText3 === 'Online'
+          ? '../../../../assets/home/active.png'
+          : '../../../../assets/home/inactive.jpg';
+      case this.stationName4:
+        return this.statusText4 === 'Online'
+          ? '../../../../assets/home/active.png'
+          : '../../../../assets/home/inactive.jpg';
+      case this.stationName5:
+        return this.statusText5 === 'Online'
+          ? '../../../../assets/home/active.png'
+          : '../../../../assets/home/inactive.jpg';
+      default:
+        return '';
+    }
+  }
+
+  getSelectedLat(): number {
+    switch (this.selectedBuoy) {
+      case this.stationName1:
+        return this.buoy1lat;
+      case this.stationName2:
+        return this.buoy2lat;
+      case this.stationName3:
+        return this.buoy3lat;
+      case this.stationName4:
+        return this.buoy4lat;
+      case this.stationName5:
+        return this.buoy5lat;
+      default:
+        return 0;
+    }
+  }
+
+  getSelectedLong(): number {
+    switch (this.selectedBuoy) {
+      case this.stationName1:
+        return this.buoy1long;
+      case this.stationName2:
+        return this.buoy2long;
+      case this.stationName3:
+        return this.buoy3long;
+      case this.stationName4:
+        return this.buoy4long;
+      case this.stationName5:
+        return this.buoy5long;
+      default:
+        return 0;
+    }
+  }
+
+  getSelectedDrift(): string {
+    switch (this.selectedBuoy) {
+      case this.stationName1:
+        return this.buoy1Drift;
+      case this.stationName2:
+        return this.buoy2Drift;
+      case this.stationName3:
+        return this.buoy3Drift;
+      case this.stationName4:
+        return this.buoy4Drift;
+      case this.stationName5:
+        return this.buoy5Drift;
+      default:
+        return 'Drift data not available';
+    }
+  }
+
   @HostListener('document:click', ['$event'])
   onclickOutside(event: MouseEvent) {
     const infobuoyElement = document.querySelector('app-infobuoy');
-    if (infobuoyElement && !infobuoyElement.contains(event.target as Node)) {
-      // this.selectedBuoy = '';
-      this.buoyTapped = false;
+    // const expandSpace = document.querySelector('.expand-space');
+    const expandButton = document.querySelector('.expand-button');
+
+    const target = event.target as Node;
+
+    // Prevent closing if clicking inside app-infobuoy
+    if (infobuoyElement && infobuoyElement.contains(target)) {
+      return;
     }
+
+    // Prevent closing if clicking inside expand space or the expand button
+    if (expandButton && expandButton.contains(target)) {
+      return;
+    }
+
+    // Close info buoy
+    this.buoyTapped = false;
+
+    // Collapse map if open
+    const mapContainer = document.getElementById('ol-map') as HTMLElement;
+    mapContainer?.classList.remove('expanded');
+    mapContainer!.style.width = '100%';
   }
 }

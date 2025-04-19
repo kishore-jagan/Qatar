@@ -21,6 +21,10 @@ export class InfobuoyComponent implements OnInit {
   @Input() latitude!: number;
   @Input() longitude!: number;
   @Input() status!: string;
+  @Input() statusImg!: string;
+  @Input() temp!: string;
+  @Input() drift!: string;
+  @Input() battery!: number;
 
   private buoyClickedSubscription: Subscription = new Subscription();
 
