@@ -39,14 +39,15 @@ export interface BuoyMeasurement {
 }
 
 export interface Metrological {
-  id?: number;
-  timestamp: string;
-  record: number;
-  battv_min: number;
-  ptemp_c_max: number;
-  datatim: string;
-  avg_ws: number;
-  windgust: number;
+  id: number;
+  timestamp: string; // ISO string format, e.g., '2025-04-09T10:30:00Z'
+  wind_speed: number; // m/s
+  wind_direction: number; // degrees
+  wind_gust: number; // m/s
+  temperature: number; // °C
+  rh: number; // Relative Humidity (%)
+  bp: number; // Barometric Pressure (hPa)
+  radiation: number;
 }
 
 @Injectable({
@@ -63,5 +64,14 @@ export class ReportService {
 
   getMetrologicalData(): Observable<Metrological[]> {
     return this.http.get<Metrological[]>(`${this.apiUrl}getMetrologicalData`);
+  }
+
+  fetchDataByDate(
+    fromDate: string,
+    toDate: string
+  ): Observable<BuoyMeasurement[]> {
+    return this.http.get<BuoyMeasurement[]>(
+      `${this.apiUrl}getSensorDataByDate?fromDate=${fromDate}&toDate=${toDate}`
+    );
   }
 }

@@ -28,11 +28,11 @@
 ::ng-deep .p-datatable-header {
   background-color: white !important;
   color: #000 !important;
-  border-radius: 20px 20px 0px 0px;
-  padding: 20px;
+  border-radius: 20px 20px 0px 0px !important;
+  padding: 20px !important;
   /* margin: 30px 0px 0px 0px; */
-  /* border: 1px solid #1ee1ff;
-  box-shadow: 0 4px 1px #1ee1ff; */
+  border: 1px solid #BDDDFC !important;
+  box-shadow: 0 4px 1px #BDDDFC;
 }
 
 .caption {
@@ -93,6 +93,25 @@
   border-color: #119C8D;
 }
 
+::ng-deep .highlight {
+  background-color: yellow;
+  color: red;
+  font-weight: bold;
+}
+
+::ng-deep .highlight-row {
+  background-color: yellow !important;
+  color: red;
+  font-weight: bold;
+}
+
+.centered-cell {
+  text-align: center;
+  vertical-align: middle;
+}
+
+
+
 .pselect p-selectbutton {
   width: 500px;
   height: 40px;
@@ -110,7 +129,7 @@
   height: 40px;
 }
 
-.date-picker p-datepicker {
+.date-picker {
   display: flex;
   width: 364px;
   height: 40px;
@@ -119,6 +138,13 @@
   align-items: center;
   justify-content: center;
 }
+
+::ng-deep .custom-date-input .p-datepicker-input {
+  width: 220px !important;
+}
+
+
+
 
 
 
@@ -171,14 +197,14 @@
 ::ng-deep .p-datatable-thead th {
   background-color: white !important;
   color: rgba(0, 0, 0, 0.674) !important;
-  /* border: 1px solid #1ee1ff;
-  box-shadow: 0 2px 1px #1ee1ff; */
+  border: 1px solid #BDDDFC;
+  box-shadow: 0 2px 1px #BDDDFC;
   text-align: left;
 
 }
 
 ::ng-deep .p-datatable-tbody td {
-  background-color: white !important;
+  /* background-color: white !important; */
   /* Black background for rows */
   color: black !important;
   /* White text */
@@ -192,14 +218,14 @@
 
 /* Paginator Styling */
 ::ng-deep .p-paginator {
-  background-color: white !important;
+  /* background-color: white !important; */
   /* Black background for paginator */
   color: black !important;
   /* White text for paginator */
-  /* border-color: #1ee1ff;
-  box-shadow: 0 4px 1px #1ee1ff; */
-  border-radius: 0px 0px 20px 20px;
-  padding: 30px 20px 40px 20px;
+  border-color: #BDDDFC;
+  box-shadow: 0 4px 1px #BDDDFC;
+  border-radius: 0px 0px 20px 20px !important;
+  /* padding: 30px 20px 40px 20px; */
   /* margin: 0px 0px 30px 0px ; */
 }
 
@@ -234,7 +260,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  height: 100%;
+  height: auto;
   width: 100%;
   /* background-color: #007bff; */
   /* border-radius: 20px; */

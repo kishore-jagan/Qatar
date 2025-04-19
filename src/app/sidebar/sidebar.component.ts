@@ -19,6 +19,6 @@ export class SidebarComponent implements OnInit {
     this.selectedIndex = this.lay.selectedIndex;
   }
   ngOnInit(): void {
-    this.selectOption(5);
+    this.selectOption(2);
   }
 }

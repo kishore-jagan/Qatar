@@ -97,11 +97,11 @@ export class MapService {
         scale: 0.06,
       }),
       text: new Text({
-        font: '12px Calibri,sans-serif',
+        font: '15px Calibri,sans-serif',
         text: name,
         offsetY: -50,
         fill: new Fill({ color: '#000' }),
-        stroke: new Stroke({ color: '#fff', width: 2 }),
+        stroke: new Stroke({ color: '#fff', width: 3 }),
       }),
     });
 

@@ -1,7 +1,7 @@
 <main>
 
     <div class="map-container">
-        <button (click)="expandMap()" class="expand-button">
+        <button (click)="expandMap($event)" class="expand-button">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                 class="bi bi-arrows-fullscreen" viewBox="0 0 16 16">
                 <path fill-rule="evenodd"
@@ -10,9 +10,9 @@
         </button>
         <div id="ol-map" class="map"></div>
         <div class="expand-space">
-            <div class="expand-rectangle" *ngFor="let station of stations; let i = index">
+            <div class="expand-rectangle" *ngFor="let buoy of buoys; let i = index">
 
-                <div class="value">{{ `B_ID${i + 1}` }}</div>
+                <div class="value">{{ `QP00${i + 1}` }}</div>
 
                 <img src="../../assets/home/buoy.png" alt="Profile" class="profile-img">
                 <!-- <div class="info-item">
@@ -25,20 +25,22 @@
                     </div>
                     <div class="info-column">
                         <div class="info-item">
-                            <span class="value">{{`${buoy1lat}°`}}</span>
+                            <span class="value">{{buoy.lat}}°</span>
                         </div>
                         <div class="info-item">
-                            <span class="value">{{`${buoy1long}°`}}</span>
+                            <span class="value">{{buoy.long}}°</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="info-row">
-                    <span class="value">{{ station.status }}</span>
-                    <img class="active" src="../../../../assets/home/active.png" alt="online">
+                    <span class="value">{{buoy.status}}</span>
+                    <img class="active"
+                        [src]="buoy.status === 'Online' ? '../../../../assets/home/active.png' : '../../../../assets/home/inactive.jpg'"
+                        alt="online">
                 </div>
                 <div class="info-row">
-                    <span class="value">{{ buoyDrift }}</span>
+                    <span class="value">Drifted {{buoy.drift}}</span>
                     <img class="locationimg" src="../../assets/home/buoy-unscreen.gif" alt="drift">
                 </div>
             </div>
@@ -61,8 +63,9 @@
         (click)="mapChange('Spinal Map')">
 
 
-    <app-infobuoy *ngIf="buoyTapped" [buoyName]="selectedBuoy" [latitude]="buoy1lat" [longitude]="buoy1long"
-        [status]="buoyDrift"></app-infobuoy>
+    <app-infobuoy *ngIf="buoyTapped" [buoyName]="getSelectedId()" [latitude]="getSelectedLat()"
+        [longitude]="getSelectedLong()" [status]="getSelectedMarker()" [statusImg]="getSelectedStatusImg()"
+        [battery]="battery" [temp]="temp" [drift]="getSelectedDrift()"></app-infobuoy>
 
     <div class="powered">
         <div class="image"></div>

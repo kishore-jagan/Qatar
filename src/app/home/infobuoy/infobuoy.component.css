@@ -1,51 +1,57 @@
-.button {
-    position: absolute;
-    top: 10%;
-    right: 20%;
-    background-color: white;
-    border-radius: 20rem 0 0 20rem;
+.infobuoy-wrapper {
     display: flex;
-    justify-content: end;
+    /* flex-direction: column; */
     align-items: center;
-    overflow: hidden;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+    max-width: 100%;
+    height: 100vh;
+    position: relative;
 }
+
+@media (max-width: 768px) {
+    .infobuoy-wrapper {
+        flex-direction: column;
+    }
+
+    .main_station_name {
+        width: 80vw;
+        height: 60vh;
+        right: -10%;
+    }
+
+    .smallCircle {
+        width: 40vw;
+        height: 25vh;
+    }
+}
+
+
 
 .main_station_name {
     width: 15rem;
     height: 25rem;
-
-    /*   
-  background: rgba(255, 255, 255, 0.021);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.171);
-  border-radius: 15px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
-
     background: rgba(255, 255, 255, 0.021);
     backdrop-filter: blur(100px);
     -webkit-backdrop-filter: blur(10px);
     border: 2px solid rgba(0, 0, 0, 0.627);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.522);
-
-
-    /* background: rgba(20, 20, 20, 0.5);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4); */
-
-
-
-    /* background: linear-gradient(to right, #7dd4ef, #b0e5f5); */
-
     border-radius: 15rem 0 0 15rem;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     align-items: center;
     position: absolute;
-    top: 18%;
+    top: 50%;
     right: 0%;
+    transform: translateY(-50%);
     overflow: hidden;
+}
+
+.main_station_name:hover {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+    transform: translateY(-50%) scale(1.02);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .stationname {
@@ -55,6 +61,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    font-weight: bold;
+    position: relative;
 }
 
 .stationname.rotated {
@@ -63,58 +71,57 @@
     transition: transform 1.5s ease;
 }
 
-
-.stationname::before {
+.stationname::before,
+.stationname::after {
     content: "";
     position: absolute;
-    width: 110%;
-    height: 1px;
-    background-color: rgb(0, 0, 0);
+    height: 2px;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.stationname::before {
+    width: 100%;
     top: 12%;
-    left: 0%;
+    left: 0;
     transform: rotate(58deg);
 }
 
 .stationname::after {
-    content: "";
-    position: absolute;
-    width: 72%;
-    height: 2px;
-    background-color: rgba(0, 0, 0, 0.6);
+    width: 70%;
     top: 38%;
-    left: 0%;
+    left: 0;
     transform: rotate(20deg);
 }
 
 .stationname .lines {
-    position: absolute;
+    position: relative;
     width: 100%;
     height: 100%;
 }
 
-.stationname .lines::before {
+.stationname .lines::before,
+.stationname .lines::after {
     content: "";
     position: absolute;
-    width: 80%;
     height: 2px;
     background-color: rgba(0, 0, 0, 0.6);
+}
+
+.stationname .lines::before {
+    width: 80%;
     top: 62%;
-    left: 0%;
+    left: 0;
     transform: rotate(-20deg);
 }
 
 .stationname .lines::after {
-    content: "";
-    position: absolute;
-    width: 110%;
-    height: 2px;
-    background-color: rgba(0, 0, 0, 0.6);
+    width: 100%;
     top: 88%;
-    left: 0%;
+    left: 0;
     transform: rotate(-58deg);
 }
 
-/* Common styles for all sections */
+/* Common style for sections */
 .section {
     position: absolute;
     width: 100%;
@@ -123,108 +130,104 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* background: linear-gradient(145deg, #3a9ad9, #54c5f8, #1f78c1); */
+    gap: 3px;
 }
 
-/* Section colors */
+/* Section placements */
 .top-1 {
-    top: 5%;
+    top: 7%;
     left: 25%;
-    /* background: linear-gradient(145deg, #3a9ad9, #54c5f8, #1f78c1); */
-    /* align-items: flex-end; */
-    /* padding-right: 10%; */
 }
 
 .top-2 {
     top: 15%;
     right: 15%;
-    transform: rotate(30deg);
+    transform: rotate(37deg);
 }
 
 .center-1 {
-    top: 42%;
+    top: 41%;
     right: 20%;
     display: flex;
     flex-direction: row;
+    transform: rotate(0deg);
 }
 
 .bottom-1 {
     top: 65%;
     right: 12%;
-    transform: rotate(-35deg);
-    /* background: linear-gradient(145deg, #3a9ad9, #54c5f8, #1f78c1); */
+    transform: rotate(-37deg);
 }
 
 .bottom-2 {
-    top: 73%;
-    left: 35%;
-    /* background: linear-gradient(145deg, #3a9ad9, #54c5f8, #1f78c1); */
+    top: 77%;
+    left: 25%;
+}
+
+.bottom-2 .value {
+    position: absolute;
+    bottom: 23px;
+
+}
+
+.bottom-2 p {
+    /* font-size: 22px; */
+    position: relative;
+    bottom: 13px;
+    /* left: 20px; */
 }
 
 /* Small circle */
 .smallCircle {
     position: absolute;
-    right: 0%;
-    top: 35%;
+    right: 2%;
+    top: 50%;
+    transform: translateY(-50%);
     width: 6rem;
     height: 10rem;
-    /* background: #11998e;
-    background: -webkit-linear-gradient(to right, #38ef7d, #11998e);
-    background: linear-gradient(to right, #38ef7d, #11998e); */
-    /* background-color: #0783d5; */
-    /* background: #00c3ff;
-    background: -webkit-linear-gradient(to right, #38ef7d, #00c3ff);
-    background: linear-gradient(to right, #38ef7d, #00c3ff); */
-
-
     background: rgba(255, 255, 255, 0.021);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 2px solid black;
-    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
-
-    /* background: rgba(20, 20, 20, 0.5);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4); */
-
-    /* background-color: black; */
-
     border-radius: 10rem 0 0 10rem;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* justify-content: top; */
     align-items: end;
-    margin-bottom: 5px;
+    /* margin-bottom: 5px; */
     z-index: 1;
-    /* color: white; */
+    font-weight: bold;
+    /* align-items: center; */
+    /* justify-content: center; */
+}
+
+.smallCircle:hover {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+    transform: translateY(-50%) scale(1.02);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.smallCircle .value {
+    margin-right: 6px;
 }
 
 .buoy-image {
     width: 70px;
-    height: 70px;
-    border-radius: 50%;
+    height: auto;
+    /* border-radius: 50%; */
     margin-bottom: 2px;
-    background-color: rgba(255, 255, 255, 0.848);
+    /* background-color: rgba(255, 255, 255, 0.848);
     background: #4747f895;
-    background: linear-gradient(to right, #1CB5E0, #4747f895);
-}
-
-.label {
-    /* color: whitesmoke; */
-}
-
-.value {
-    font-weight: bold;
-    /* color: white; */
+    background: linear-gradient(to right, #1CB5E0, #4747f895); */
 }
 
 .locationimg {
-    height: 50px;
-    width: 30px;
+    height: 40px;
+    width: 25px;
     margin-left: 2px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
+
 
 .driftimg {
     position: absolute;
@@ -235,16 +238,19 @@
 
 .battery {
     position: absolute;
-    top: 25px;
+    top: 22px;
     height: 30px;
     width: 30px;
 }
 
-/* .latlon {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-} */
+.temp {
+    position: absolute;
+    top: 20px;
+    right: 70px;
+    height: 40px;
+    width: 20px;
+}
+
 
 .info-item1 {
     display: flex;
@@ -257,144 +263,5 @@
     height: 25px;
     border-radius: 50%;
     background-color: white;
-}
-
-.color2 {
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    padding-left: 2px;
-    top: 35px;
-    /* border-radius: 50%; */
-    /* background-color: red; */
-}
-
-
-
-
-/* .charge-container {
-    position: relative;
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    border: 5px solid #4caf50;
- 
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 0 15px rgba(76, 175, 80, 0.5);
-    background-color: black;
-}
-
-.charge-fill {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 0%;
-    background: linear-gradient(to top, #4caf50, #66ff66);
-    animation: chargeAnimation 3s infinite alternate ease-in-out;
-    border-radius: 50%;
-}
-
-@keyframes chargeAnimation {
-    0% {
-        height: 10%;
-    }
-
-    100% {
-        height: 90%;
-    }
-}
-
-.thunder-icon {
-    position: absolute;
-    font-size: 30px;
-    color: yellow;
-    animation: blink 1s infinite alternate;
-}
-
-@keyframes blink {
-    0% {
-        opacity: 1;
-    }
-
-    100% {
-        opacity: 0.6;
-    }
-} */
-
-
-
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-/* Main circular card */
-.circular-card {
-    position: relative;
-    width: 40%;
-    height: 80%;
-    border-radius: 50%;
-    overflow: hidden;
-    display: flex;
-}
-
-/* Left half container */
-.left-half {
-    width: 50%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    position: relative;
-}
-
-/* Top half */
-.top-half {
-    width: 100%;
-    height: 49.5%;
-    background-color: rgba(0, 123, 255, 0.8);
-    border-top-left-radius: 50%;
-    position: absolute;
-    top: 2px;
-    left: 0px;
-    clip-path: polygon(100% 100%, 0% 100%, 0% 0%);
-}
-
-.top-half2 {
-    width: 100%;
-    height: 49.5%;
-    background-color: rgba(0, 123, 255, 0.8);
-    border-top-left-radius: 50%;
-    position: absolute;
-    top: -2px;
-    left: 0px;
-    clip-path: polygon(0% 0%, 100% 0%, 100% 100%);
-}
-
-/* Bottom half */
-.bottom-half {
-    width: 100%;
-    height: 49.5%;
-    background-color: rgba(0, 86, 179, 0.8);
-    border-bottom-left-radius: 50%;
-    bottom: -2px;
-    left: 0px;
-    position: absolute;
-    clip-path: polygon(100% 0%, 0% 100%, 100% 100%);
-}
-
-.bottom-half2 {
-    width: 100%;
-    height: 49.5%;
-    background-color: rgba(0, 123, 255, 0.8);
-    border-bottom-left-radius: 50%;
-    position: absolute;
-    bottom: 2px;
-    left: 0px;
-    clip-path: polygon(0% 100%, 100% 0%, 0% 0%);
+    margin-left: 5px;
 }

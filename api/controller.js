@@ -5,7 +5,8 @@ const getStationConfig = async (req, res) => {
     console.log('Received request to getStationConfig');
 
     try {
-        const result = await pool.query('SELECT * FROM tb_stations_config');
+        const result = await pool.query('SELECT * FROM tb_stations_config ORDER BY station_id ASC');
+        ;
         console.log('Query successful:', result.rows);
         res.json(result.rows);
     } catch (err) {
@@ -18,14 +19,32 @@ const getAllSensorData = async (req, res) => {
     console.log('Received request to getAllSensorData');
 
     try {
-        const result = await pool.query('SELECT * FROM tb_buoy_01_measurements');
+        const result = await pool.query('SELECT * FROM tb_buoy_01_measurements ORDER BY id ASC');
         console.log('Query successful:', result.rows);
-        res.json(result.rows);
+        res.json(result.rows.reverse());
     } catch (error) {
         console.error('Error fetching SensorData data:', error.message);
         res.status(500).json({ error: error.message });
     }
 }
+
+const getSensorDataByDate = async (req, res) => {
+    console.log('Received request to getSensorDataByDate');
+    const { fromDate, toDate } = req.query;
+
+    try {
+        const result = await pool.query(
+            `SELECT * FROM tb_buoy_01_measurements 
+         WHERE timestamp BETWEEN $1 AND $2 ORDER BY id ASC`,
+            [fromDate, toDate]
+        );
+
+        res.json(result.rows.reverse());
+    } catch (error) {
+        console.error('Error fetching getSensorDataByDate data:', error.message);
+        res.status(500).json({ error: error.message });
+    }
+};
 
 const getMetrologicalData = async (req, res) => {
     console.log('Received request to getMetrologicalData');
@@ -43,5 +62,6 @@ const getMetrologicalData = async (req, res) => {
 module.exports = {
     getStationConfig,
     getAllSensorData,
+    getSensorDataByDate,
     getMetrologicalData,
 }
